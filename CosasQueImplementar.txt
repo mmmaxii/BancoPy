@@ -6,4 +6,4 @@ Glosario:
 Estuve pensando todo lo que tengo que hacer. Primero que nada, voy a gestionar todo el orden de las
 carpetas, para que sea mas ordenado y tenga sentido.
 
-Tenemos las carpetas de data_access, donde se gestiona
+Tenemos las carpetas de data_access, mi intencion 
