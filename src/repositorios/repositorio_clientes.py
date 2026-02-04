@@ -43,7 +43,12 @@ class RepositorioClientes:
             cliente.telefono, cliente.direccion, cliente.fecha_registro,
             cliente.estado, cliente.saldo, cliente.__class__.__name__
         ))
+        
         self.connection.commit()
+        # Ya que el id es autogenerado por la base de datos, 
+        # se lo asignamos al cliente para que pueda ser usado mas adelante.
+        cliente.id = self.cursor.lastrowid
+
 
     def actualizar_cliente(self, cliente: Cliente):
         self.cursor.execute("""
