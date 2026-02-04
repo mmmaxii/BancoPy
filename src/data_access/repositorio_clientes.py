@@ -1,6 +1,6 @@
-
+from 
 class RepositorioClientes:
-    def __init__(self):
+    def __init__(self, db_path: str, connection):
         pass
     
     def guardar_cliente(self, cliente):
@@ -24,4 +24,3 @@ class RepositorioClientes:
     def exportar_clientes_csv(self, clientes):
         pass
 
-    
