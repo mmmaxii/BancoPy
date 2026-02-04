@@ -1,7 +1,8 @@
 from pathlib import Path
 from datetime import datetime
-
+from repositorios.repositorio_clientes import ClienteDuplicadoError
 from repositorios.repositorio_clientes import RepositorioClientes
+
 from models.cliente import Cliente
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,11 +39,22 @@ def main():
     )
 
     print("Guardando cliente...")
-    repositorio.guardar_cliente(cliente)
+    try:
+        repositorio.guardar_cliente(cliente)
+        print("✅ Cliente guardado")
+
+    except ClienteDuplicadoError as e:
+        print(f"⚠️ {e}")
+
 
     print("Guardando cliente 2...")
-    repositorio.guardar_cliente(cliente_2)
-    
+    try:
+        repositorio.guardar_cliente(cliente_2)
+        print("✅ Cliente guardado")
+
+    except ClienteDuplicadoError as e:
+        print(f"⚠️ {e}")
+
     print("Listando clientes en la base:")
     clientes = repositorio.listar_clientes()
 

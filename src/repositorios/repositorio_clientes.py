@@ -3,6 +3,9 @@ from pathlib import Path
 
 from models.cliente import Cliente
 
+class ClienteDuplicadoError(Exception):
+    pass
+
 
 class RepositorioClientes:
     def __init__(self, db_path: Path):
@@ -33,22 +36,34 @@ class RepositorioClientes:
         self.connection.commit()
 
     def guardar_cliente(self, cliente: Cliente):
-        self.cursor.execute("""
-        INSERT INTO clientes (
-            nombre, apellido, email, telefono, direccion,
-            fecha_registro, estado, saldo, tipo_cliente
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            cliente.nombre, cliente.apellido, cliente.email,
-            cliente.telefono, cliente.direccion, cliente.fecha_registro,
-            cliente.estado, cliente.saldo, cliente.__class__.__name__
-        ))
-        
-        self.connection.commit()
-        # Ya que el id es autogenerado por la base de datos, 
-        # se lo asignamos al cliente para que pueda ser usado mas adelante.
-        cliente.id = self.cursor.lastrowid
+        try:
+            self.cursor.execute("""
+            INSERT INTO clientes (
+                nombre, apellido, email, telefono, direccion,
+                fecha_registro, estado, saldo, tipo_cliente
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                cliente.nombre,
+                cliente.apellido,
+                cliente.email,
+                cliente.telefono,
+                cliente.direccion,
+                cliente.fecha_registro,
+                cliente.estado,
+                cliente.saldo,
+                cliente.__class__.__name__
+            ))
 
+            self.connection.commit()
+            cliente.id = self.cursor.lastrowid
+
+        except sqlite3.IntegrityError:
+            raise ClienteDuplicadoError(
+                f"El cliente ya existe en la base de datos:\n{cliente}"
+            )
+
+   
 
     def actualizar_cliente(self, cliente: Cliente):
         self.cursor.execute("""
