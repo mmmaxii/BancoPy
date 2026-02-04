@@ -23,12 +23,13 @@ class Cliente:
         return f"Cliente: {self.nombre} {self.apellido}"
 
     
-    # Voy redefinir mas tarde para que se adapte a los distintos tipos de clientes.
-    def get_saldo(self):
+    @property
+    def saldo(self):
         return self._saldo
-    
-    def set_saldo(self, saldo: float):
-        self._saldo = saldo
+
+    @saldo.setter
+    def saldo(self, value: float):
+        self._saldo = value
     
     # esta funcion me sirvio mucho para el segundo proyecto ABP, 
     # me ayudaba a guardar los datos en un archivo JSON. Quizas 

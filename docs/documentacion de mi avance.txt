@@ -1,0 +1,36 @@
+Este archivo lo estoy haciendo para que quede un registro de lo que estoy haciendo diariamente.
+
+
+03/02/2026
+
+Estuve modificando mas que nada el orden de los archivos y el nombre de las carpetas. Estaba pensando en como
+hacer mas ordenado el codigo y mas facil de entender. Por eso modularize el codigo en carpetas y archivos.
+
+Ahora tengo la siguiente estructura:
+src/
+├── models/
+│   ├── cliente.py
+│   ├── cliente_corporativo.py
+│   ├── cliente_premium.py
+│   ├── cliente_regular.py
+│   └── cliente_vip.py
+├── Repositorios/
+│   ├── repositorio_clientes.py
+│   ├── repositorio_transacciones.py
+├── services/
+│   ├── servicio_clientes.py
+│   ├── servicio_notificaciones.py
+│   └── servicio_validacion.py
+└── utils/
+    └── validadores_de_formato.py
+
+
+Me gusta como lo tengo organizado ahora porque me permite ver claramente donde esta cada cosa.
+Ahora voy a empezar a implementar la logica de cada archivo.
+
+Lo primero que hice fue crear la clase Cliente, que es la clase base de todos los clientes.
+Luego cree las clases ClienteCorporativo, ClientePremium, ClienteRegular y ClienteVip, que son las clases que heredan de Cliente.
+
+Ademas de que cree la clase ValidadorFormato, que se encarga de validar los datos de los clientes. Es muy completa 
+y utilizo la libreria re para validar los datos de los clientes.
+
