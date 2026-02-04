@@ -6,3 +6,8 @@
 class ServicioNotificaciones:
     def __init__(self):
         pass
+
+    def enviar_email_bienvenida(self, cliente):
+        pass
+    
+    
