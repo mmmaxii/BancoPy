@@ -50,7 +50,7 @@ Ahora en adelante lo que voy a hacer es crear una lista de to-do para seguir mis
 
     - Incorporacion de contraseña al momento de crear un usuario. CREADO CON EXITO YEIIIIII
 
-    - Incorporacion de notificacion en email con una API externa.
+    - Incorporacion de notificacion en email con una API externa. No completado este dia.
     
 
     Notas: Ahora es posible crear clientes desde la UI creada en consola. Pero tengo ciertas inquietudes. Por ejemplo, 
@@ -62,4 +62,12 @@ Ahora en adelante lo que voy a hacer es crear una lista de to-do para seguir mis
 
 
 
-    
+05/02/2026
+
+    - Implementar un sistema de sign up y login para que el cliente pueda iniciar sesion y ver su cuenta.   Creado con todo el exitooo
+        - Crear nuevos metodos en la clase repositorio_clientes para poder buscar clientes por email y rut.
+        - Crear nuevos metodos en la clase servicio_clientes para iniciar sesion.
+        - Actualizamos el archivo inputs_usuario.py para que pueda pedir los inputs para iniciar sesion.
+        - obviamnete debemos modificar el menu principal para esto.
+
+    - Seguimos con la implementacion de notificaciones en email con una API externa. 

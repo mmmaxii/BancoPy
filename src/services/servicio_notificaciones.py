@@ -1,7 +1,20 @@
 from ..models.cliente import Cliente
+
 # Implementar lógica de notificaciones (API de Email)
 # Ya me decidi usar una clase para esto, la cual se encargara de enviar notificaciones
 # a los clientes
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+
+if not SENDGRID_API_KEY:
+    raise RuntimeError("SENDGRID_API_KEY no está configurada")
+
+
 
 
 class ServicioNotificaciones:
