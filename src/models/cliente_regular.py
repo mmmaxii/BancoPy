@@ -10,10 +10,10 @@ from .cliente import Cliente
 # Antes lo estaba haciendo con *args, **kwargs,
 # pero ahora lo hago con parametros nombrados.
 class ClienteRegular(Cliente):
-    def __init__(self, id, nombre, apellido, email, telefono, 
+    def __init__(self, id, nombre, apellido, rut, email, telefono, 
                  direccion, fecha_registro, saldo): 
         
-        super().__init__(id, nombre, apellido, email, telefono, 
+        super().__init__(id, nombre, apellido, rut, email, telefono, 
                          direccion, fecha_registro, saldo)
 
 

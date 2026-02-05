@@ -4,8 +4,8 @@ from .cliente import Cliente
 # Es un cliente que tiene un saldo minimo y una antiguedad minima.
 
 class ClientePremium(Cliente):
-    def __init__(self, id, nombre, apellido, email, telefono, 
+    def __init__(self, id, nombre, apellido, rut, email, telefono, 
                  direccion, fecha_registro, saldo): 
         
-        super().__init__(id, nombre, apellido, email, telefono, 
+        super().__init__(id, nombre, apellido, rut, email, telefono, 
                          direccion, fecha_registro, saldo)

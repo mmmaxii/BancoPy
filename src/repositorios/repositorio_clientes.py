@@ -28,6 +28,7 @@ class RepositorioClientes:
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nombre TEXT NOT NULL,
             apellido TEXT NOT NULL,
+            rut TEXT UNIQUE NOT NULL,
             email TEXT UNIQUE NOT NULL,
             telefono TEXT,
             direccion TEXT,
@@ -43,13 +44,14 @@ class RepositorioClientes:
         try:
             self.cursor.execute("""
             INSERT INTO clientes (
-                nombre, apellido, email, telefono, direccion,
+                nombre, apellido, rut, email, telefono, direccion,
                 fecha_registro, estado, saldo, tipo_cliente
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 cliente.nombre,
                 cliente.apellido,
+                cliente.rut,
                 cliente.email,
                 cliente.telefono,
                 cliente.direccion,
@@ -74,12 +76,12 @@ class RepositorioClientes:
     def actualizar_cliente(self, cliente: Cliente):
         self.cursor.execute("""
         UPDATE clientes SET
-            nombre = ?, apellido = ?, email = ?, telefono = ?,
+            nombre = ?, apellido = ?, rut = ?, email = ?, telefono = ?,
             direccion = ?, fecha_registro = ?, estado = ?,
             saldo = ?, tipo_cliente = ?
         WHERE id = ?
         """, (
-            cliente.nombre, cliente.apellido, cliente.email,
+            cliente.nombre, cliente.apellido, cliente.rut, cliente.email,
             cliente.telefono, cliente.direccion, cliente.fecha_registro,
             cliente.estado, cliente.saldo, cliente.__class__.__name__,
             cliente.id

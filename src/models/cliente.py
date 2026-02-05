@@ -6,12 +6,13 @@ Clase base para representar un cliente.
 from datetime import datetime
 
 class Cliente:
-    def __init__(self, id: int, nombre: str, apellido: str, email: str,
+    def __init__(self, id: int, nombre: str, apellido: str, rut: str, email: str,
                 telefono: str, direccion: str, fecha_registro: datetime, saldo: float):
             
         self.id = id
         self.nombre = nombre
         self.apellido = apellido
+        self.rut = rut
         self.email = email
         self.telefono = telefono
         self.direccion = direccion

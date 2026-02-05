@@ -14,6 +14,8 @@ class InputsUsuario:
         V_F.validar_nombre(nombre)
         apellido = input("Ingrese el apellido del cliente: ")
         V_F.validar_nombre(apellido)
+        rut = input("Ingrese el RUT del cliente (ej: 12345678-9): ")
+        V_F.validar_rut(rut)
         email = input("Ingrese el email del cliente: ")
         V_F.validar_email(email)
         telefono = input("Ingrese el telefono del cliente: ")
@@ -24,4 +26,4 @@ class InputsUsuario:
         saldo = float(input("Ingrese el saldo del cliente: "))
         tipo_cliente = input("Ingrese el tipo de cliente (Persona/Empresa): ")
         
-        return id, nombre, apellido, email, telefono, direccion, fecha_registro, saldo, tipo_cliente
+        return id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, tipo_cliente
