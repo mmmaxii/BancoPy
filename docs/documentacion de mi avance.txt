@@ -32,7 +32,8 @@ Lo primero que hice fue crear la clase Cliente, que es la clase base de todos lo
 Luego cree las clases ClienteCorporativo, ClientePremium, ClienteRegular y ClienteVip, que son las clases que heredan de Cliente.
 
 Ademas de que cree la clase ValidadorFormato, que se encarga de validar los datos de los clientes. Es muy completa 
-y utilizo la libreria re para validar los datos de los clientes.
+y utilizo la libreria re para validar los datos de los clientes. Ademas utilice el validor de rut (modulo 11 que se 
+incorpora en chile) para la validacion de un rut chileno.
 
 
 *****************************************************************

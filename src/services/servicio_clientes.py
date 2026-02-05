@@ -8,6 +8,8 @@ from repositorios.repositorio_clientes import RepositorioClientes
 from models.cliente_regular import ClienteRegular
 from models.cliente_corporativo import ClienteCorporativo
 from utils.config import PATH_DB_TEST
+from pathlib import Path
+
 # Lo que quiero hacer con esta funcion es organizar todas las funciones que tenemos
 
 
@@ -41,9 +43,9 @@ class ServicioClientes:
 
     
     def ver_todos_los_clientes(self):
-        clientes = RepositorioClientes(PATH_DB_TEST).obtener_todos_los_clientes()
+        clientes = RepositorioClientes(PATH_DB_TEST).listar_clientes()
         for cliente in clientes:
-            print(cliente)
+            print(dict(cliente))
         
         
     
