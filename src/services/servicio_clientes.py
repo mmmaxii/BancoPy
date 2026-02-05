@@ -11,6 +11,7 @@ from models.cliente_premium import ClientePremium
 from models.cliente_vip import ClienteVip
 from utils.config import PATH_DB_TEST
 from pathlib import Path
+from .servicio_notificaciones import ServicioNotificaciones
 
 # Lo que quiero hacer con esta funcion es organizar todas las funciones que tenemos
 
@@ -38,6 +39,8 @@ class ServicioClientes:
         
         # Guardar en repositorio (si lo has instanciado)
         # self.repositorio.guardar_cliente(cliente)
+        ServicioNotificaciones().enviar_email_bienvenida(cliente)
+        
         print(f"Cliente {cliente.nombre} creado exitosamente con estado: {cliente.estado}")
         
         RepositorioClientes(PATH_DB_TEST).guardar_cliente(cliente)
@@ -49,31 +52,10 @@ class ServicioClientes:
         for cliente in clientes:
             print(dict(cliente))
         
-    def iniciar_sesion(self):
-        identificador, contrasena = I_U().pedir_credenciales_login()
-        
-        repo = RepositorioClientes(PATH_DB_TEST)
-        cliente_data = None
-        
-        # Determinar si es RUT o Email (simple check: si tiene @ es email)
-        if "@" in identificador:
-            cliente_data = repo.buscar_cliente_por_email(identificador)
-        else:
-            cliente_data = repo.buscar_cliente_por_rut(identificador)
-            
-        if not cliente_data:
-            print("Usuario no encontrado.")
-            return None
-            
-        # Validar contraseña
-        if cliente_data["contrasena"] != contrasena:
-            print("Contraseña incorrecta.")
-            return None
-            
-        # Reconstruir el objeto según el tipo de cliente
+    def _reconstruir_cliente(self, cliente_data):
+        """Método helper para reconstruir un objeto Cliente desde los datos de la BD."""
         tipo = cliente_data["tipo_cliente"]
         
-        # Diccionario para instanciar la clase correcta
         clases = {
             "ClienteRegular": ClienteRegular,
             "ClienteCorporativo": ClienteCorporativo,
@@ -82,10 +64,6 @@ class ServicioClientes:
         }
         
         if tipo in clases:
-            # Extraemos los argumentos necesarios para el constructor
-            # Nota: El constructor espera: id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena
-            # El row_factory de sqlite3 devuelve algo parecido a un dict
-            
             cliente_obj = clases[tipo](
                 id=cliente_data["id"],
                 nombre=cliente_data["nombre"],
@@ -98,14 +76,71 @@ class ServicioClientes:
                 saldo=cliente_data["saldo"],
                 contrasena=cliente_data["contrasena"]
             )
-            # Aseguramos el estado
             cliente_obj.estado = cliente_data["estado"]
+            return cliente_obj
+        return None
+
+    def iniciar_sesion(self):
+        identificador, contrasena = I_U().pedir_credenciales_login()
+        
+        repo = RepositorioClientes(PATH_DB_TEST)
+        cliente_data = None
+        
+        if "@" in identificador:
+            cliente_data = repo.buscar_cliente_por_email(identificador)
+        else:
+            cliente_data = repo.buscar_cliente_por_rut(identificador)
             
+        if not cliente_data:
+            print("Usuario no encontrado.")
+            return None
+            
+        if cliente_data["contrasena"] != contrasena:
+            print("Contraseña incorrecta.")
+            return None
+            
+        cliente_obj = self._reconstruir_cliente(cliente_data)
+        
+        if cliente_obj:
             print(f"Bienvenido/a {cliente_obj.nombre} {cliente_obj.apellido}!")
             return cliente_obj
         else:
-            print(f"Error: Tipo de cliente desconocido '{tipo}'.")
+            print(f"Error: Tipo de cliente desconocido '{cliente_data['tipo_cliente']}'.")
             return None
+
+    def eliminar_cliente_admin(self):
+        print("\n--- ELIMINAR CLIENTE (MODO ADMIN) ---")
+        identificador = input("Ingrese RUT o Email del cliente a eliminar: ")
         
+        repo = RepositorioClientes(PATH_DB_TEST)
+        cliente_data = None
         
+        if "@" in identificador:
+            cliente_data = repo.buscar_cliente_por_email(identificador)
+        else:
+            cliente_data = repo.buscar_cliente_por_rut(identificador)
+            
+        if not cliente_data:
+            print("Cliente no encontrado.")
+            return
+
+        cliente = self._reconstruir_cliente(cliente_data)
+        if not cliente:
+            print("Error al reconstruir cliente.")
+            return
+
+        print("\nDatos del cliente a eliminar:")
+        print(cliente) # Usa el __str__ modificado
+        
+        confirmacion = input("\nIngrese contraseña de administrador para confirmar: ")
+        
+        if confirmacion == "admin1234":
+            repo.eliminar_cliente(cliente)
+            ServicioNotificaciones().enviar_email_despedida(cliente)
+            print(f"Cliente {cliente.nombre} {cliente.apellido} eliminado exitosamente.")
+        else:
+            print("Contraseña incorrecta. Operación cancelada.")
+        
+    
+    
     

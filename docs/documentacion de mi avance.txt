@@ -70,4 +70,6 @@ Ahora en adelante lo que voy a hacer es crear una lista de to-do para seguir mis
         - Actualizamos el archivo inputs_usuario.py para que pueda pedir los inputs para iniciar sesion.
         - obviamnete debemos modificar el menu principal para esto.
 
-    - Seguimos con la implementacion de notificaciones en email con una API externa. 
+    - Seguimos con la implementacion de notificaciones en email con una API externa. Creado con semi-exito
+
+    - Incorporar la funcionalidad de eliminar un cliente por rut y que pide una contraseña para confirmar la eliminacion.

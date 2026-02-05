@@ -8,7 +8,8 @@ def menu_principal():
         print("1. Iniciar Sesión")
         print("2. Registrarse")
         print("3. Ver todos los clientes (Solo Admin)")
-        print("4. Salir")
+        print("4. Eliminar Cliente (Solo Admin)")
+        print("5. Salir")
         
         opcion = input("Seleccione una opción: ")
         
@@ -34,6 +35,12 @@ def menu_principal():
                 print(f"Error: {e}")
 
         elif opcion == "4":
+            try:
+                servicio.eliminar_cliente_admin()
+            except Exception as e:
+                print(f"Error al eliminar: {e}")
+
+        elif opcion == "5":
             print("Saliendo del sistema...")
             break
         else:

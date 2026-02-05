@@ -26,7 +26,7 @@ class Cliente:
         return self.__contrasena
 
     def __str__(self):
-        return f"Cliente: {self.nombre} {self.apellido}"
+        return f"Cliente: {self.nombre} {self.apellido} | Saldo: ${self.saldo} | Tipo: {self.__class__.__name__}"
 
     
     @property
