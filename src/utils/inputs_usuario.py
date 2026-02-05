@@ -28,3 +28,8 @@ class InputsUsuario:
         tipo_cliente = input("Ingrese el tipo de cliente (Persona/Empresa): ")
         
         return id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena, tipo_cliente
+
+    def pedir_credenciales_login(self):
+        identificador = input("Ingrese su RUT o Email: ")
+        contrasena = input("Ingrese su contraseña: ")
+        return identificador, contrasena

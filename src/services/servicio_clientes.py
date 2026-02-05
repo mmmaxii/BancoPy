@@ -7,6 +7,8 @@ from utils.inputs_usuario import InputsUsuario as I_U
 from repositorios.repositorio_clientes import RepositorioClientes
 from models.cliente_regular import ClienteRegular
 from models.cliente_corporativo import ClienteCorporativo
+from models.cliente_premium import ClientePremium
+from models.cliente_vip import ClienteVip
 from utils.config import PATH_DB_TEST
 from pathlib import Path
 
@@ -46,6 +48,64 @@ class ServicioClientes:
         clientes = RepositorioClientes(PATH_DB_TEST).listar_clientes()
         for cliente in clientes:
             print(dict(cliente))
+        
+    def iniciar_sesion(self):
+        identificador, contrasena = I_U().pedir_credenciales_login()
+        
+        repo = RepositorioClientes(PATH_DB_TEST)
+        cliente_data = None
+        
+        # Determinar si es RUT o Email (simple check: si tiene @ es email)
+        if "@" in identificador:
+            cliente_data = repo.buscar_cliente_por_email(identificador)
+        else:
+            cliente_data = repo.buscar_cliente_por_rut(identificador)
+            
+        if not cliente_data:
+            print("Usuario no encontrado.")
+            return None
+            
+        # Validar contraseña
+        if cliente_data["contrasena"] != contrasena:
+            print("Contraseña incorrecta.")
+            return None
+            
+        # Reconstruir el objeto según el tipo de cliente
+        tipo = cliente_data["tipo_cliente"]
+        
+        # Diccionario para instanciar la clase correcta
+        clases = {
+            "ClienteRegular": ClienteRegular,
+            "ClienteCorporativo": ClienteCorporativo,
+            "ClientePremium": ClientePremium,
+            "ClienteVip": ClienteVip
+        }
+        
+        if tipo in clases:
+            # Extraemos los argumentos necesarios para el constructor
+            # Nota: El constructor espera: id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena
+            # El row_factory de sqlite3 devuelve algo parecido a un dict
+            
+            cliente_obj = clases[tipo](
+                id=cliente_data["id"],
+                nombre=cliente_data["nombre"],
+                apellido=cliente_data["apellido"],
+                rut=cliente_data["rut"],
+                email=cliente_data["email"],
+                telefono=cliente_data["telefono"],
+                direccion=cliente_data["direccion"],
+                fecha_registro=cliente_data["fecha_registro"],
+                saldo=cliente_data["saldo"],
+                contrasena=cliente_data["contrasena"]
+            )
+            # Aseguramos el estado
+            cliente_obj.estado = cliente_data["estado"]
+            
+            print(f"Bienvenido/a {cliente_obj.nombre} {cliente_obj.apellido}!")
+            return cliente_obj
+        else:
+            print(f"Error: Tipo de cliente desconocido '{tipo}'.")
+            return None
         
         
     

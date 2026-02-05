@@ -75,6 +75,14 @@ class RepositorioClientes:
         self.cursor.execute("SELECT * FROM clientes WHERE id = ?", (id_cliente,))
         return self.cursor.fetchone()
 
+    def buscar_cliente_por_rut(self, rut: str):
+        self.cursor.execute("SELECT * FROM clientes WHERE rut = ?", (rut,))
+        return self.cursor.fetchone()
+
+    def buscar_cliente_por_email(self, email: str):
+        self.cursor.execute("SELECT * FROM clientes WHERE email = ?", (email,))
+        return self.cursor.fetchone()
+
     def actualizar_cliente(self, cliente: Cliente):
         self.cursor.execute("""
         UPDATE clientes SET

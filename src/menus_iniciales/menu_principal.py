@@ -5,24 +5,35 @@ def menu_principal():
     
     while True:
         print("\n--- GESTOR INTELIGENTE DE CLIENTES (GIC) ---")
-        print("1. Crear nuevo cliente")
-        print("2. Ver todos los clientes")
-        print("3. Salir")
+        print("1. Iniciar Sesión")
+        print("2. Registrarse")
+        print("3. Ver todos los clientes (Solo Admin)")
+        print("4. Salir")
         
         opcion = input("Seleccione una opción: ")
         
         if opcion == "1":
             try:
-                servicio.agregar_cliente()
+                cliente = servicio.iniciar_sesion()
+                if cliente:
+                    # Aquí iría el menú del cliente logueado
+                    print(f"Sesión iniciada. Saldo actual: ${cliente.saldo}")
             except Exception as e:
-                print(f"Error: {e}")
+                print(f"Error al iniciar sesión: {e}")
 
         elif opcion == "2":
+            try:
+                servicio.agregar_cliente()
+            except Exception as e:
+                print(f"Error al registrar: {e}")
+
+        elif opcion == "3":
             try:
                 servicio.ver_todos_los_clientes()
             except Exception as e:
                 print(f"Error: {e}")
-        elif opcion == "3":
+
+        elif opcion == "4":
             print("Saliendo del sistema...")
             break
         else:
