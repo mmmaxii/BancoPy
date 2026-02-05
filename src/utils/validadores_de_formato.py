@@ -16,7 +16,7 @@ class ValidadorFormato:
         # Expresión regular estándar para emails
         patron = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
         if not re.match(patron, email):
-            raise ValueError(f"Error: '{email}' no es un email válido.")
+            raise ValueError(f"'{email}' no es un email válido.")
         return True
 
     @staticmethod
@@ -28,7 +28,7 @@ class ValidadorFormato:
         # Permite opcionalmente un '+' al inicio, seguido de 8 a 15 dígitos.
         patron = r'^\+?[0-9]{8,15}$'
         if not re.match(patron, telefono):
-            raise ValueError(f"Error: '{telefono}' no es un número de teléfono válido (debe tener entre 8 y 15 dígitos).")
+            raise ValueError(f"'{telefono}' no es un número de teléfono válido (debe tener entre 8 y 15 dígitos).")
         return True
 
     @staticmethod
@@ -37,12 +37,12 @@ class ValidadorFormato:
         Verifica que el nombre contenga solo letras y espacios (no números ni símbolos raros).
         """
         if not nombre or len(nombre.strip()) == 0:
-            raise ValueError("Error: El nombre no puede estar vacío.")
+            raise ValueError("El nombre no puede estar vacío.")
         
         # Solo letras (a-z), espacios y tildes/ñ
         patron = r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$'
         if not re.match(patron, nombre):
-            raise ValueError(f"Error: '{nombre}' contiene caracteres inválidos (solo se permiten letras).")
+            raise ValueError(f"'{nombre}' contiene caracteres inválidos (solo se permiten letras).")
         return True
 
     @staticmethod
@@ -54,13 +54,13 @@ class ValidadorFormato:
         
         # Debe tener al menos 2 caracteres (número + dv)
         if len(rut) < 2:
-             raise ValueError("Error: El RUT es demasiado corto.")
+             raise ValueError("El RUT es demasiado corto.")
         
         cuerpo = rut[:-1]
         dv = rut[-1].upper()
 
         if not cuerpo.isdigit():
-             raise ValueError("Error: El cuerpo del RUT debe ser numérico.")
+             raise ValueError("El cuerpo del RUT debe ser numérico.")
         
         # Algoritmo de validación del DV (Módulo 11)
         suma = 0
@@ -80,6 +80,6 @@ class ValidadorFormato:
             dv_esperado = str(esperado)
         
         if dv != dv_esperado:
-            raise ValueError(f"Error: El RUT {rut} no es válido (Dígito Verificador incorrecto).")
+            raise ValueError(f"El RUT {rut} no es válido (Dígito Verificador incorrecto).")
         
         return True

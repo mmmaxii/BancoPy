@@ -7,8 +7,7 @@ from datetime import datetime
 
 class Cliente:
     def __init__(self, id: int, nombre: str, apellido: str, email: str,
-                telefono: str, direccion: str, fecha_registro: datetime,
-                estado: str, saldo: float):
+                telefono: str, direccion: str, fecha_registro: datetime, saldo: float):
             
         self.id = id
         self.nombre = nombre
@@ -17,7 +16,7 @@ class Cliente:
         self.telefono = telefono
         self.direccion = direccion
         self.fecha_registro = fecha_registro
-        self.estado = estado
+        self.estado = "Activo"
         self._saldo = saldo
     
     def __str__(self):
