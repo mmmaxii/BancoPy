@@ -1,6 +1,7 @@
-# TODO: Implementar clase base Cliente
-# Definimos las bases de nuestro sistema. Voy a declarar lo que acepta como input 
-# para mas claridad.
+"""
+Clase base para representar un cliente. 
+"""
+
 
 from datetime import datetime
 

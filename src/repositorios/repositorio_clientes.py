@@ -1,11 +1,15 @@
+"""
+Clase que se encarga de la logica de la base de datos de clientes.
+Gestiona persistencia en SQLite y exportación a archivos.
+"""
+
 import sqlite3
 from pathlib import Path
-
 from models.cliente import Cliente
+
 
 class ClienteDuplicadoError(Exception):
     pass
-
 
 class RepositorioClientes:
     def __init__(self, db_path: Path):
@@ -62,8 +66,10 @@ class RepositorioClientes:
             raise ClienteDuplicadoError(
                 f"El cliente ya existe en la base de datos:\n{cliente}"
             )
-
-   
+    
+    def buscar_cliente_por_id(self, id_cliente: int):
+        self.cursor.execute("SELECT * FROM clientes WHERE id = ?", (id_cliente,))
+        return self.cursor.fetchone()
 
     def actualizar_cliente(self, cliente: Cliente):
         self.cursor.execute("""
@@ -83,10 +89,6 @@ class RepositorioClientes:
     def eliminar_cliente(self, cliente: Cliente):
         self.cursor.execute("DELETE FROM clientes WHERE id = ?", (cliente.id,))
         self.connection.commit()
-
-    def buscar_cliente_por_id(self, id_cliente: int):
-        self.cursor.execute("SELECT * FROM clientes WHERE id = ?", (id_cliente,))
-        return self.cursor.fetchone()
 
     def listar_clientes(self):
         self.cursor.execute("SELECT * FROM clientes")

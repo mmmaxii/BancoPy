@@ -3,7 +3,7 @@
 # Lo mismo que hice para el caso de las notificaciones, voy a usar una clase
 # para esto, la cual se encargara de validar los datos de los clientes.
 
-class ServicioValidacionAPI:
+class ServicioValidacionEmailApi:
     def __init__(self):
         pass
 

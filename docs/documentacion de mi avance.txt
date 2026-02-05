@@ -34,3 +34,14 @@ Luego cree las clases ClienteCorporativo, ClientePremium, ClienteRegular y Clien
 Ademas de que cree la clase ValidadorFormato, que se encarga de validar los datos de los clientes. Es muy completa 
 y utilizo la libreria re para validar los datos de los clientes.
 
+
+*****************************************************************
+Ahora lo que voy a hacer es crear una lista de to-do.
+
+04/02/2026
+
+- Empezar con la clase ServicioClientes para automatizar el proceso de creacion de clientes.
+-- En el camino voy a crear la clase InputsUsuario para que pueda pedir los inputs al usuario.
+-- y validar 
+- Vincular ServicioClientes con RepositorioClientes para que pueda guardar los clientes en la base de datos.
+- 
