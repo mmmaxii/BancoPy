@@ -5,7 +5,7 @@ from .cliente import Cliente
 
 class ClientePremium(Cliente):
     def __init__(self, id, nombre, apellido, rut, email, telefono, 
-                 direccion, fecha_registro, saldo): 
+                 direccion, fecha_registro, saldo, contrasena): 
         
         super().__init__(id, nombre, apellido, rut, email, telefono, 
-                         direccion, fecha_registro, saldo)
+                         direccion, fecha_registro, saldo, contrasena)

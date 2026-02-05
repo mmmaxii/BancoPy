@@ -7,7 +7,7 @@ from datetime import datetime
 
 class Cliente:
     def __init__(self, id: int, nombre: str, apellido: str, rut: str, email: str,
-                telefono: str, direccion: str, fecha_registro: datetime, saldo: float):
+                telefono: str, direccion: str, fecha_registro: datetime, saldo: float, contrasena: str):
             
         self.id = id
         self.nombre = nombre
@@ -19,7 +19,12 @@ class Cliente:
         self.fecha_registro = fecha_registro
         self.estado = "Activo"
         self._saldo = saldo
+        self.__contrasena = contrasena
     
+    @property
+    def contrasena(self):
+        return self.__contrasena
+
     def __str__(self):
         return f"Cliente: {self.nombre} {self.apellido}"
 

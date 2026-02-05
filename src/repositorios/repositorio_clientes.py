@@ -35,6 +35,7 @@ class RepositorioClientes:
             fecha_registro TEXT,
             estado TEXT,
             saldo REAL,
+            contrasena TEXT NOT NULL,
             tipo_cliente TEXT NOT NULL
         );
         """)
@@ -45,9 +46,9 @@ class RepositorioClientes:
             self.cursor.execute("""
             INSERT INTO clientes (
                 nombre, apellido, rut, email, telefono, direccion,
-                fecha_registro, estado, saldo, tipo_cliente
+                fecha_registro, estado, saldo, contrasena, tipo_cliente
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 cliente.nombre,
                 cliente.apellido,
@@ -58,6 +59,7 @@ class RepositorioClientes:
                 cliente.fecha_registro,
                 cliente.estado,
                 cliente.saldo,
+                cliente.contrasena,
                 cliente.__class__.__name__
             ))
 
@@ -78,12 +80,13 @@ class RepositorioClientes:
         UPDATE clientes SET
             nombre = ?, apellido = ?, rut = ?, email = ?, telefono = ?,
             direccion = ?, fecha_registro = ?, estado = ?,
-            saldo = ?, tipo_cliente = ?
+            saldo = ?, contrasena = ?, tipo_cliente = ?
         WHERE id = ?
         """, (
             cliente.nombre, cliente.apellido, cliente.rut, cliente.email,
             cliente.telefono, cliente.direccion, cliente.fecha_registro,
-            cliente.estado, cliente.saldo, cliente.__class__.__name__,
+            cliente.estado, cliente.saldo, cliente.contrasena, 
+            cliente.__class__.__name__,
             cliente.id
         ))
         self.connection.commit()

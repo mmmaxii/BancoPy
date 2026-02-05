@@ -24,6 +24,7 @@ class InputsUsuario:
         fecha_registro = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         # estado = "Activo" # Ya no pedimos estado, se setea solo en el __init__
         saldo = float(input("Ingrese el saldo del cliente: "))
+        contrasena = input("Ingrese una contraseña segura: ")
         tipo_cliente = input("Ingrese el tipo de cliente (Persona/Empresa): ")
         
-        return id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, tipo_cliente
+        return id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena, tipo_cliente

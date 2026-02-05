@@ -26,13 +26,13 @@ class ServicioClientes:
     # Primero solo validaremos y mas adelante agregamos la validacion de email real
     # junto con las notificaciones
     def agregar_cliente(self):
-        id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, tipo_cliente = I_U().pedir_inputs_nuevo_cliente()
+        id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena, tipo_cliente = I_U().pedir_inputs_nuevo_cliente()
         
         cliente = None
         if tipo_cliente == "Persona":
-            cliente = ClienteRegular(id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo)
+            cliente = ClienteRegular(id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena)
         elif tipo_cliente == "Empresa":
-            cliente = ClienteCorporativo(id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo)
+            cliente = ClienteCorporativo(id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena)
         
         # Guardar en repositorio (si lo has instanciado)
         # self.repositorio.guardar_cliente(cliente)
