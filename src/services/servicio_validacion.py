@@ -1,16 +1,15 @@
-# TODO: Implementar lógica de validación (local + API externa)
+# Estuve pensando en que un sistema de validacion del tipo "Pulse aqui para validar su email" es lento y se necesita
+# tiempo para que el usuario pueda validar su email. Por lo que mejor voy a usar una API externa que envie un correo 
+# cuando se crea una cuenta nueva. Independientemente si la cuenta email exista o no.
 
-# Lo mismo que hice para el caso de las notificaciones, voy a usar una clase
-# para esto, la cual se encargara de validar los datos de los clientes.
-
-class ServicioValidacionEmailApi:
-    def __init__(self):
-        pass
+#class ServicioValidacionEmailApi:
+#    def __init__(self):
+#        pass
 
     # Solo voy a validar el email, ya que es el unico dato que se puede validar con una API externa.
     # Quizas es posible validar el telefono con una API externa, pero no estoy seguro de implementarlo.
     # Por ahora solo validare el email.
-    def validar_email(self, email: str):
-        pass
+#    def validar_email(self, email: str):
+#        pass
     
 

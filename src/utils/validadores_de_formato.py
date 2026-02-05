@@ -1,4 +1,5 @@
 import re
+from utils.config import DOMINIOS_PERMITIDOS
 
 class ValidadorFormato:
     """
@@ -17,6 +18,13 @@ class ValidadorFormato:
         patron = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
         if not re.match(patron, email):
             raise ValueError(f"'{email}' no es un email válido.")
+        
+        # Validación de dominios permitidos
+        dominio = email.split('@')[1]
+        
+        if dominio not in DOMINIOS_PERMITIDOS:
+            raise ValueError(f"El dominio '{dominio}' no está permitido. Dominios válidos: {', '.join(DOMINIOS_PERMITIDOS)}")
+        
         return True
 
     @staticmethod

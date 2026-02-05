@@ -37,16 +37,29 @@ incorpora en chile) para la validacion de un rut chileno.
 
 
 *****************************************************************
-Ahora lo que voy a hacer es crear una lista de to-do.
+Ahora en adelante lo que voy a hacer es crear una lista de to-do para seguir mis tareas.
 
 04/02/2026
 
-- Empezar con la clase ServicioClientes para automatizar el proceso de creacion de clientes. CREADO CON EXITO 
+    - Empezar con la clase ServicioClientes para automatizar el proceso de creacion de clientes. CREADO CON EXITO 
+        - En el camino voy a crear la clase InputsUsuario para que pueda pedir los inputs al usuario y validar las entradas.
+        - Ya que antes estaba haciendo todo desde main y ahora quiro generalizar el codigo (aun que todavia no hago la UI).
+        - Cree el archivo config.py para almacenar los paths de las bases de datos.
+    
+    - Vincular ServicioClientes con RepositorioClientes para que pueda guardar los clientes en la base de datos. CREADO CON EXITO YEIII 
 
--- En el camino voy a crear la clase InputsUsuario para que pueda pedir los inputs al usuario y validar las entradas.
--- Ya que antes estaba haciendo todo desde main y ahora quiro generalizar el codigo (aun que todavia no hago la UI).
--- Cree el archivo config.py para almacenar los paths de las bases de datos.
- 
-- Vincular ServicioClientes con RepositorioClientes para que pueda guardar los clientes en la base de datos. CREADO CON EXITO YEIII 
+    - Incorporacion de contraseña al momento de crear un usuario. CREADO CON EXITO YEIIIIII
 
-- 
+    - Incorporacion de notificacion en email con una API externa.
+    
+
+    Notas: Ahora es posible crear clientes desde la UI creada en consola. Pero tengo ciertas inquietudes. Por ejemplo, 
+    nosotros tenemos la base de datos, pero el cliente deberia solo ver su cuenta, no cuentas de terceros. Entonces esta misma persona debe iniciar sesion.
+    Por lo que estoy pensando en hacer algo como un login para que el cliente pueda iniciar sesion y ver su cuenta y ver sus transacciones.
+    A la vez, que como ejecutivo del banco tengamos acceso a todos los clientes y podamos ver sus cuentas y transacciones. Asi mismo poder ver 
+    graficos de entradas de dinero y salidas de dinero con matplotlib. Pero eso lo hare despues. Entonces, reordenando las ideas: hacer un login y un sign up.
+    Ya que un cliente no debe ver el menu de ejecutivo y viceversa. 
+
+
+
+    

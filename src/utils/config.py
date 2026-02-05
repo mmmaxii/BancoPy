@@ -13,4 +13,5 @@ PATH_DB_TEST = BASE_DIR / "data" / "test.db"
 PATH_DB_CLIENTES = BASE_DIR / "data" / "data_clientes.db"
 PATH_DB_TRANSACCIONES = BASE_DIR / "data" / "data_transacciones_clientes.db"
 
-
+# Configuraciones de Validación
+DOMINIOS_PERMITIDOS = ["gmail.com", "hotmail.com", "yahoo.com", "outlook.com", "uac.cl", "uc.cl"]
