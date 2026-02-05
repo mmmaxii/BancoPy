@@ -6,7 +6,10 @@ from .cliente import Cliente
 # Por eso mismo debe pagar una membresia mensual.
 
 class ClienteVip(Cliente):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, id, nombre, apellido, email, telefono, 
+                 direccion, fecha_registro, estado, saldo): 
+        
+        super().__init__(id, nombre, apellido, email, telefono, 
+                         direccion, fecha_registro, estado, saldo)
 
 

@@ -41,7 +41,9 @@ Ahora lo que voy a hacer es crear una lista de to-do.
 04/02/2026
 
 - Empezar con la clase ServicioClientes para automatizar el proceso de creacion de clientes.
--- En el camino voy a crear la clase InputsUsuario para que pueda pedir los inputs al usuario.
--- y validar 
+-- En el camino voy a crear la clase InputsUsuario para que pueda pedir los inputs al usuario y validar las entradas.
+-- Ya que antes estaba haciendo todo desde main y ahora quiro generalizar el codigo (aun que todavia no hago la UI).
+-- Cree el archivo config.py para almacenar los paths de las bases de datos.
+-- 
 - Vincular ServicioClientes con RepositorioClientes para que pueda guardar los clientes en la base de datos.
 - 
