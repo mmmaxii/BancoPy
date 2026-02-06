@@ -25,9 +25,25 @@ class InputsUsuario:
         direccion = input("Ingrese la direccion del cliente: ")
         fecha_registro = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         # estado = "Activo" # Ya no pedimos estado, se setea solo en el __init__
-        saldo = float(input("Ingrese el saldo del cliente: "))
+        saldo = float(input("Ingrese el saldo inicial: "))
         contrasena = input("Ingrese una contraseña segura: ")
-        tipo_cliente = input("Ingrese el tipo de cliente (Persona/Empresa): ")
+        
+        print("\nSeleccione el tipo de cuenta:")
+        print("1. Cliente Regular")
+        print("2. Cliente Premium")
+        print("3. Cliente VIP")
+        print("4. Cliente Corporativo")
+        opcion_tipo = input("Opción: ")
+        
+        tipo_cliente = "ClienteRegular" # Default
+        if opcion_tipo == "1":
+            tipo_cliente = "ClienteRegular"
+        elif opcion_tipo == "2":
+            tipo_cliente = "ClientePremium"
+        elif opcion_tipo == "3":
+            tipo_cliente = "ClienteVip"
+        elif opcion_tipo == "4":
+            tipo_cliente = "ClienteCorporativo"
         
         return id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena, tipo_cliente
 

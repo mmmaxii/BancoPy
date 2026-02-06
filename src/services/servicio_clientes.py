@@ -32,9 +32,13 @@ class ServicioClientes:
         id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena, tipo_cliente = I_U().pedir_inputs_nuevo_cliente()
         
         cliente = None
-        if tipo_cliente == "Persona":
+        if tipo_cliente == "ClienteRegular":
             cliente = ClienteRegular(id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena)
-        elif tipo_cliente == "Empresa":
+        elif tipo_cliente == "ClientePremium":
+            cliente = ClientePremium(id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena)
+        elif tipo_cliente == "ClienteVip":
+            cliente = ClienteVip(id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena)
+        elif tipo_cliente == "ClienteCorporativo":
             cliente = ClienteCorporativo(id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena)
         
         # Guardar en repositorio (si lo has instanciado)
@@ -50,6 +54,8 @@ class ServicioClientes:
     
     def ver_todos_los_clientes(self):
         clientes = RepositorioClientes(PATH_DB_CLIENTES).listar_clientes()
+
+        
         if not clientes:
             print("No hay clientes en la base de datos")
             
