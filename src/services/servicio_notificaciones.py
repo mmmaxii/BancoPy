@@ -35,7 +35,7 @@ class ServicioNotificaciones:
         """
 
         message = Mail(
-            from_email=Email(FROM_EMAIL, "Mi App"),
+            from_email=Email(FROM_EMAIL, "BancoPy"),
             to_emails=To(cliente.email),
             subject=subject,
             html_content=Content("text/html", html_content),
@@ -57,7 +57,7 @@ class ServicioNotificaciones:
         """
 
         message = Mail(
-            from_email=Email(FROM_EMAIL, "Mi App"),
+            from_email=Email(FROM_EMAIL, "BancoPy"),
             to_emails=To(cliente.email),
             subject=subject,
             html_content=Content("text/html", html_content),

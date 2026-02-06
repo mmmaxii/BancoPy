@@ -1,6 +1,11 @@
 import re
 from utils.config import DOMINIOS_PERMITIDOS
 
+# Se utiliza @staticmethod cuando un método no necesita acceder ni modificar el estado de la clase (cls)
+# ni de la instancia (self). Es ideal para funciones de utilidad que pertenecen lógicamente a la clase
+# pero funcionan de manera independiente, permitiendo su llamada sin instanciar el objeto.
+
+
 class ValidadorFormato:
     """
     Clase encargada de validar el formato estricto de los datos.

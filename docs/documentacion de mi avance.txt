@@ -72,4 +72,13 @@ Ahora en adelante lo que voy a hacer es crear una lista de to-do para seguir mis
 
     - Seguimos con la implementacion de notificaciones en email con una API externa. Creado con semi-exito
 
-    - Incorporar la funcionalidad de eliminar un cliente por rut y que pide una contraseña para confirmar la eliminacion.
+    - Incorporar la funcionalidad de eliminar un cliente por rut y que pide una contraseña para confirmar la eliminacion. CREADO CON EXITO
+        - Me di cuenta que no se envia el correo al cliente cuando se elimina la cuenta. Ya que el cliente se elimina antes de enviar el correo.
+        - Entonces quizas guarde el correo antes y luego elimine.
+        - ademas tengo un metodo que reconstriye la clase con los datos de database, pero no se inicializa bien. Me falta corregir eso.
+
+    - Incorporar un log para los transacciones me gustaria eso. Para el final de sesion, almacena todo esto.
+        - Quizas sea bueno hacer una clase para esto. 
+
+
+        

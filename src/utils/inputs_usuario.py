@@ -11,6 +11,8 @@ class InputsUsuario:
         # Usando la clase ValidadorFormato
         id = None 
         nombre = input("Ingrese el nombre del cliente: ")
+        # Si nos damos cuenta, no instanciamos la clase, sino que simplemente
+        # usamos el metodo estatico (@staticmethod). 
         V_F.validar_nombre(nombre)
         apellido = input("Ingrese el apellido del cliente: ")
         V_F.validar_nombre(apellido)

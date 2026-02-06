@@ -39,16 +39,20 @@ class ServicioClientes:
         
         # Guardar en repositorio (si lo has instanciado)
         # self.repositorio.guardar_cliente(cliente)
-        ServicioNotificaciones().enviar_email_bienvenida(cliente)
-        
         print(f"Cliente {cliente.nombre} creado exitosamente con estado: {cliente.estado}")
         
-        RepositorioClientes(PATH_DB_TEST).guardar_cliente(cliente)
-        print("Cliente guardado exitosamente en la base de datos")
+        if RepositorioClientes(PATH_DB_TEST).guardar_cliente(cliente):
+            print("Cliente guardado exitosamente en la base de datos")
 
+            #Voy a dejar de mandar correos por ahora. pero si funciona. 
+            #ServicioNotificaciones().enviar_email_bienvenida(cliente)
+            #print("Correo de bienvenida enviado exitosamente")
     
     def ver_todos_los_clientes(self):
         clientes = RepositorioClientes(PATH_DB_TEST).listar_clientes()
+        if not clientes:
+            print("No hay clientes en la base de datos")
+            
         for cliente in clientes:
             print(dict(cliente))
         
@@ -84,6 +88,7 @@ class ServicioClientes:
         identificador, contrasena = I_U().pedir_credenciales_login()
         
         repo = RepositorioClientes(PATH_DB_TEST)
+
         cliente_data = None
         
         if "@" in identificador:
@@ -94,7 +99,8 @@ class ServicioClientes:
         if not cliente_data:
             print("Usuario no encontrado.")
             return None
-            
+
+        print(cliente_data)            
         if cliente_data["contrasena"] != contrasena:
             print("Contraseña incorrecta.")
             return None
@@ -124,7 +130,8 @@ class ServicioClientes:
             print("Cliente no encontrado.")
             return
 
-        cliente = self._reconstruir_cliente(cliente_data)
+        cliente = self._reconstruir_cliente(dict(cliente_data))
+
         if not cliente:
             print("Error al reconstruir cliente.")
             return
@@ -135,9 +142,9 @@ class ServicioClientes:
         confirmacion = input("\nIngrese contraseña de administrador para confirmar: ")
         
         if confirmacion == "admin1234":
-            repo.eliminar_cliente(cliente)
             ServicioNotificaciones().enviar_email_despedida(cliente)
             print(f"Cliente {cliente.nombre} {cliente.apellido} eliminado exitosamente.")
+            repo.eliminar_cliente(cliente)
         else:
             print("Contraseña incorrecta. Operación cancelada.")
         
