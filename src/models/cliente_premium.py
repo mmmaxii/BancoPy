@@ -10,6 +10,8 @@ class ClientePremium(Cliente):
                  direccion, fecha_registro, saldo, contrasena): 
         
         super().__init__(id, nombre, apellido, rut, email, telefono, 
+        direccion, fecha_registro, saldo, contrasena)
+    
     @property
     def saldo(self):
         return self._saldo
@@ -22,3 +24,8 @@ class ClientePremium(Cliente):
         # lo que hace es llamar al metodo saldo de la clase padre
         # y le pasa el valor que le pasamos
         super(ClientePremium, self.__class__).saldo.fset(self, value)
+
+    def simular_compra_dolares(self, monto_clp: float) -> float:
+        tasa_cambio = 950 # Valor dolar simulado
+        dolares = monto_clp / tasa_cambio
+        return dolares

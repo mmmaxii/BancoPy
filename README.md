@@ -60,6 +60,12 @@ Utilidades y helpers.
     - **Premium**: Máx $10M
     - **VIP**: Máx $50M
     - **Corporativo**: Máx $100M
+- **Límites Diarios**: Control de seguridad que impide depositar más de $10M o transferir más de $5M en un mismo día.
+- **Funcionalidades Únicas por Cliente**:
+    - **Regular**: Simulador de Depósito a Plazo.
+    - **Premium**: Simulador de Compra de Dólares.
+    - **VIP**: Apertura de Portafolio de Inversión BlackRock.
+    - **Corporativo**: Calculadora de Nómina de Sueldos.
 - **Modo Admin**: Funcionalidad para eliminar clientes protegida por contraseña maestra (`admin1234`).
 
 ## Limitaciones Conocidas (To-Do)

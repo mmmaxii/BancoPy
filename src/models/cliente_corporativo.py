@@ -7,6 +7,8 @@ class ClienteCorporativo(Cliente):
                  direccion, fecha_registro, saldo, contrasena): 
         
         super().__init__(id, nombre, apellido, rut, email, telefono, 
+        direccion, fecha_registro, saldo, contrasena)
+    
     @property
     def saldo(self):
         return self._saldo
@@ -19,3 +21,8 @@ class ClienteCorporativo(Cliente):
         # lo que hace es llamar al metodo saldo de la clase padre
         # y le pasa el valor que le pasamos
         super(ClienteCorporativo, self.__class__).saldo.fset(self, value)
+
+    def calcular_nomina_sueldos(self, num_empleados: int, sueldo_promedio: float) -> float:
+        costo_operativo = 1.03 # 3% extra de costos
+        total = num_empleados * sueldo_promedio * costo_operativo
+        return total

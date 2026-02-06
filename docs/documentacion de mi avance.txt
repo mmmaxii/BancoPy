@@ -77,7 +77,7 @@ Ahora en adelante lo que voy a hacer es crear una lista de to-do para seguir mis
         - Entonces quizas guarde el correo antes y luego elimine.
         - ademas tengo un metodo que reconstriye la clase con los datos de database, pero no se inicializa bien. Corregido: solo pase los datos a dict()
 
-    - Incorporar un log para los transacciones me gustaria eso. Para el final de sesion, almacena todo esto.
+    - Incorporar un log para los transacciones me gustaria eso. Para el final de sesion, almacena todo esto. # Metodo no incorporado.
         - Quizas sea bueno hacer una clase para esto. 
 
 
@@ -89,4 +89,8 @@ Ahora en adelante lo que voy a hacer es crear una lista de to-do para seguir mis
         - Ademas se pueden hacer transferencias entre clientes dentro del banco. Creado con exito.
         - Se debe guardar en la base de datos. Creado con exito.
     
-    - Vamos
+    - Incorporar polimorfismo en la cantidad de saldo que puede almacenar cada cliente. CREADO CON EXITO
+
+    - Incorporar un maximo de transferencias y depositos diarios que puede hacer una persona con su cuenta. CREADO CON EXITO
+
+    - Agregar funciones especificas para cada clase. En proceso.

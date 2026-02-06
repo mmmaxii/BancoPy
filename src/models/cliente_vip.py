@@ -12,6 +12,8 @@ class ClienteVip(Cliente):
                  direccion, fecha_registro, saldo, contrasena): 
         
         super().__init__(id, nombre, apellido, rut, email, telefono, 
+        direccion, fecha_registro, saldo, contrasena)
+    
     @property
     def saldo(self):
         return self._saldo
@@ -19,9 +21,13 @@ class ClienteVip(Cliente):
     @saldo.setter
     def saldo(self, value):
         if value > self.LIMITE_SALDO:
-            raise ValueError(f"El saldo excede el límite permitido para Cliente VIP (${self.LIMITE_SALDO})")ç
+            raise ValueError(f"El saldo excede el límite permitido para Cliente VIP (${self.LIMITE_SALDO})")
         # lo que hace es llamar al metodo saldo de la clase padre
         # y le pasa el valor que le pasamos
         super(ClienteVip, self.__class__).saldo.fset(self, value)
+
+    def abrir_portafolio_inversion(self):
+        # Simula la apertura de servicios exclusivos
+        return "Portafolio de Inversiones BlackRock activado. Rentabilidad estimada: 12% anual."
 
 

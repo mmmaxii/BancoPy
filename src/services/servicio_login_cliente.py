@@ -24,11 +24,15 @@ from repositorios.repositorio_clientes import RepositorioClientes
 from utils.config import PATH_DB_CLIENTES, PATH_DB_TRANSACCIONES
 
 class LoginCliente:
+    LIMITE_DIARIO_DEPOSITO = 10000000
+    LIMITE_DIARIO_TRANSFERENCIA = 5000000
+
     def __init__(self, cliente: Cliente):
         self.cliente = cliente
         self.repo_transacciones = RepositorioTransacciones(PATH_DB_TRANSACCIONES)
         self.repo_clientes = RepositorioClientes(PATH_DB_CLIENTES)
 
+    # clase helper para reconstruir el cliente implementada en la clase servicio_clientes.
     def _reconstruir_cliente_desde_dict(self, datos):
         # Helper simple para reconstruir objeto cliente
         tipo = datos["tipo_cliente"]
@@ -55,6 +59,11 @@ class LoginCliente:
             return cliente
         return None
     
+    def _verificar_limite_diario(self, tipo_transaccion, monto_nuevo, limite_maximo):
+        total_hoy = self.repo_transacciones.calcular_total_diario(self.cliente.id, tipo_transaccion)
+        if (total_hoy + monto_nuevo) > limite_maximo:
+            raise ValueError(f"La operación excede el límite diario de ${limite_maximo}. Acumulado hoy: ${total_hoy}")
+
     def ver_saldo(self):
         print(f"Saldo actual: ${self.cliente.saldo}")
 
@@ -73,6 +82,9 @@ class LoginCliente:
             if monto <= 0:
                 print("El monto debe ser positivo.")
                 return
+            
+            # Verificar Limite Diario
+            self._verificar_limite_diario("Deposito", monto, self.LIMITE_DIARIO_DEPOSITO)
 
             # Actualizar objeto
             self.cliente.saldo += monto
@@ -86,8 +98,8 @@ class LoginCliente:
             )
             print(f"Depósito exitoso. Nuevo saldo: ${self.cliente.saldo}")
             
-        except ValueError:
-            print("Monto inválido.")
+        except ValueError as ve:
+            print(f"Error: {ve}")
         except Exception as e:
             print(f"Error al depositar: {e}")
 
@@ -123,6 +135,9 @@ class LoginCliente:
                 print("Saldo insuficiente.")
                 return
             
+            # Verificar Limite Diario
+            self._verificar_limite_diario("Transferencia Enviada", monto, self.LIMITE_DIARIO_TRANSFERENCIA)
+            
             # 3. Ejecutar Transferencia
             # Descontar al origen
             self.cliente.saldo -= monto
@@ -153,11 +168,48 @@ class LoginCliente:
             
             print(f"Transferencia exitosa. Tu nuevo saldo: ${self.cliente.saldo}")
             
-        except ValueError:
-            print("Monto inválido.")
+        except ValueError as ve:
+            print(f"Error: {ve}")
         except Exception as e:
             print(f"Error en la transacción: {e}")
 
     def cerrar_sesion(self):
         print("Cerrando sesión...")
         self.repo_clientes.cerrar_conexion()
+
+    def acceder_servicios_especiales(self):
+        print(f"\n--- SERVICIOS ESPECIALES: {self.cliente.__class__.__name__} ---")
+        
+        if isinstance(self.cliente, ClienteRegular):
+            print("SIMULADOR DE DEPÓSITO A PLAZO")
+            try:
+                monto = float(input("Monto a invertir: "))
+                dias = int(input("Días plazo: "))
+                ganancia = self.cliente.simular_cdp(monto, dias)
+                print(f"Ganancia estimada: ${ganancia:.2f}")
+            except ValueError:
+                print("Datos inválidos.")
+
+        elif isinstance(self.cliente, ClientePremium):
+            print("SIMULADOR COMPRA DÓLARES")
+            try:
+                monto = float(input("Monto en CLP a cambiar: "))
+                dolares = self.cliente.simular_compra_dolares(monto)
+                print(f"Recibirías: US${dolares:.2f}")
+            except ValueError:
+                print("Monto inválido.")
+
+        elif isinstance(self.cliente, ClienteVip):
+            print("PORTAFOLIO DE INVERSIÓN")
+            mensaje = self.cliente.abrir_portafolio_inversion()
+            print(mensaje)
+
+        elif isinstance(self.cliente, ClienteCorporativo):
+            print("CÁLCULO DE NÓMINA")
+            try:
+                empleados = int(input("Número de empleados: "))
+                promedio = float(input("Sueldo promedio: "))
+                total = self.cliente.calcular_nomina_sueldos(empleados, promedio)
+                print(f"Total a provisionar (con 3% costos): ${total:.2f}")
+            except ValueError:
+                print("Datos inválidos.")

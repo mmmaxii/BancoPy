@@ -16,6 +16,8 @@ class ClienteRegular(Cliente):
                  direccion, fecha_registro, saldo, contrasena): 
         
         super().__init__(id, nombre, apellido, rut, email, telefono, 
+        direccion, fecha_registro, saldo, contrasena)
+    
     @property
     def saldo(self):
         return self._saldo
@@ -28,3 +30,9 @@ class ClienteRegular(Cliente):
         # Lo que hace es llamar al metodo saldo de la clase padre
         # y le pasa el valor que le pasamos
         super(ClienteRegular, self.__class__).saldo.fset(self, value)
+
+    def simular_cdp(self, monto: float, dias: int) -> float:
+        # Tasa simulada de 0.5% mensual (aprox 0.016% diario)
+        tasa_diaria = 0.00016
+        ganancia = monto * tasa_diaria * dias
+        return ganancia

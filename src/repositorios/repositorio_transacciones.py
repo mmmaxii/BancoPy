@@ -60,5 +60,21 @@ class RepositorioTransacciones:
     def exportar_transacciones_json(self, transacciones):
         pass
     
+    
     def exportar_transacciones_csv(self, transacciones):
         pass
+
+    def calcular_total_diario(self, cliente_id: int, tipo: str) -> float:
+        import sqlite3
+        fecha_hoy = datetime.now().strftime("%Y-%m-%d") + "%"
+        
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            query = """
+                SELECT SUM(monto) FROM transacciones 
+                WHERE cliente_id = ? AND tipo = ? AND fecha LIKE ?
+            """
+            cursor.execute(query, (cliente_id, tipo, fecha_hoy))
+            resultado = cursor.fetchone()[0]
+            
+            return resultado if resultado else 0.0
