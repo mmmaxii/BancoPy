@@ -55,12 +55,17 @@ class ServicioClientes:
     def ver_todos_los_clientes(self):
         clientes = RepositorioClientes(PATH_DB_CLIENTES).listar_clientes()
 
+        confirmacion = input("\nIngrese contraseña de administrador para confirmar: ")
         
-        if not clientes:
-            print("No hay clientes en la base de datos")
-            
-        for cliente in clientes:
-            print(dict(cliente))
+        if confirmacion == "admin1234":
+            if not clientes:
+                print("No hay clientes en la base de datos")
+                
+            for cliente in clientes:
+                print(dict(cliente))
+        else:
+            print("Contraseña incorrecta. Operación cancelada.")
+        
         
     def _reconstruir_cliente(self, cliente_data):
         """Método helper para reconstruir un objeto Cliente desde los datos de la BD."""
