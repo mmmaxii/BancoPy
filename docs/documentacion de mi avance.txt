@@ -88,6 +88,5 @@ Ahora en adelante lo que voy a hacer es crear una lista de to-do para seguir mis
         - Para esto debemos tener una clase de logincliente, donde se puedan hacer depositos y retiros. Creado con exito.
         - Ademas se pueden hacer transferencias entre clientes dentro del banco. Creado con exito.
         - Se debe guardar en la base de datos. Creado con exito.
-
-
-
+    
+    - Vamos

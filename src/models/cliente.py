@@ -35,6 +35,9 @@ class Cliente:
 
     @saldo.setter
     def saldo(self, value: float):
+        if value < 0:
+            raise ValueError("El saldo no puede ser negativo.")
+            
         self._saldo = value
     
     # esta funcion me sirvio mucho para el segundo proyecto ABP, 

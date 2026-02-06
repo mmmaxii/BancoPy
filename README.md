@@ -27,11 +27,12 @@ Contiene las clases que representan las entidades del dominio.
 ### `src/repositorios/`
 Capa de acceso a datos (DAO).
 - `repositorio_clientes.py`: Gestiona la persistencia de clientes en SQLite (CRUD: Crear, Leer, Buscar, Eliminar).
-- `repositorio_transacciones.py`: *[En desarrollo]* Futura gestión de transacciones.
+- `repositorio_transacciones.py`: Gestiona el historial de transacciones (Depósitos, Retiros, Transferencias) vinculado a cada cliente.
 
 ### `src/services/`
 Capa de lógica de negocio.
 - `servicio_clientes.py`: Coordina las operaciones principales (Login, Registro, Eliminación). Implementa la lógica para reconstruir objetos desde la base de datos.
+- `servicio_login_cliente.py`: Maneja la sesión del usuario activo, permitiendo consultar saldo, ver historial, depositar y transferir fondos.
 - `servicio_notificaciones.py`: Integra la API de SendGrid para enviar correos de bienvenida y despedida.
 - `servicio_validacion.py`: Validaciones de negocio adicionales.
 
@@ -43,18 +44,27 @@ Utilidades y helpers.
 
 ### `src/menus_iniciales/`
 - `menu_principal.py`: Interfaz de línea de comandos (CLI) principal que orquesta el flujo de la aplicación.
+- `menu_cliente.py`: Menú específico para usuarios logueados.
 
 ## Funcionalidades Actuales
 - **Gestión de Clientes**: Crear y buscar clientes.
 - **Autenticación**: Inicio de sesión mediante **RUT** o **Email** y contraseña.
+- **Sistema de Transacciones**:
+    - **Depósitos**: Abonar dinero a la propia cuenta.
+    - **Transferencias**: Enviar dinero a otros clientes del banco (validando fondos y destinatario).
+    - **Historial**: Registro detallado de movimientos (tipo, monto, fecha, destinatario).
 - **Validaciones**: Verificación robusta de RUT chileno y formatos de datos.
-- **Notificaciones**: Envío de correos automáticos al registrarse o eliminarse (requiere API Key).
-- **Modo Admin**: Funcionalidad para eliminar clientes protegida por contraseña maestra.
+- **Notificaciones**: Envío de correos automáticos al registrarse, eliminarse o realizar transferencias (requiere API Key).
+- **Límites de Saldo (Polimorfismo)**: Restricciones de saldo máximo implementadas en cada subclase mediante sobreescritura de propiedades (setters):
+    - **Regular**: Máx $2M
+    - **Premium**: Máx $10M
+    - **VIP**: Máx $50M
+    - **Corporativo**: Máx $100M
+- **Modo Admin**: Funcionalidad para eliminar clientes protegida por contraseña maestra (`admin1234`).
 
 ## Limitaciones Conocidas (To-Do)
-- ❌ **Transacciones**: No hay sistema de historial de transacciones ni transferencias implementado aún.
 - ❌ **Interfaz Gráfica**: La interacción es 100% por consola (Terminal).
-- ❌ **Dashboard**: No existen gráficos ni reportes visuales.
+- ❌ **Dashboard**: No existen gráficos ni reportes visuales avanzados.
 
 ## Instalación y Ejecución
 
