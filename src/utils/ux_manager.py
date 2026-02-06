@@ -61,7 +61,7 @@ class UXManager:
             UXManager.meta_easter_egg = random.randint(10, 15)
 
     @staticmethod
-    def mostrar_encabezado(titulo: str):
+    def mostrar_encabezado(titulo: str, subtitulo: str = None):
         """Muestra un encabezado decorado y centrado."""
         # Verificar sorpresa antes de limpiar para el nuevo menú
         UXManager._verificar_easter_egg()
@@ -70,6 +70,8 @@ class UXManager:
         ancho = 60
         print("=" * ancho)
         print(f"{titulo.center(ancho)}")
+        if subtitulo:
+            print(f"{subtitulo.center(ancho)}")
         print("=" * ancho)
         print("\n")
 
