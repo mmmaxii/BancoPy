@@ -143,9 +143,18 @@ class LoginCliente:
             self.cliente.saldo -= monto
             self.repo_clientes.actualizar_cliente(self.cliente)
             
-            # Sumar al destino
-            destinatario.saldo += monto
-            self.repo_clientes.actualizar_cliente(destinatario)
+            try:
+                # Sumar al destino
+                destinatario.saldo += monto
+                self.repo_clientes.actualizar_cliente(destinatario)
+            except ValueError as e:
+                # ROLLBACK: Devolver el dinero al origen si el destino falla
+                self.cliente.saldo += monto
+                self.repo_clientes.actualizar_cliente(self.cliente)
+                print(f"\nError: No se pudo realizar la transferencia al RUT {destinatario.rut}.")
+                print("Motivo: El destinatario no puede recibir este monto porque excede su límite de saldo.")
+                print(f"Su dinero ha sido devuelto. Saldo actual: ${self.cliente.saldo}")
+                return
             
             # 4. Registrar Logs
             # Log para mí (Envío)

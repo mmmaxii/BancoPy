@@ -93,4 +93,7 @@ Ahora en adelante lo que voy a hacer es crear una lista de to-do para seguir mis
 
     - Incorporar un maximo de transferencias y depositos diarios que puede hacer una persona con su cuenta. CREADO CON EXITO
 
-    - Agregar funciones especificas para cada clase. En proceso.
+    - Agregar funciones especificas para cada clase. READYY
+
+    - Me di cuenta que cuando transferieres a una cuenta y este tiene el maximo de dinero que puede almacenar,
+    sale la excepcion de la clase destinatiara, en vez de decir "no se pudo realizar la transferencia".
