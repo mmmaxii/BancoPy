@@ -75,10 +75,19 @@ Ahora en adelante lo que voy a hacer es crear una lista de to-do para seguir mis
     - Incorporar la funcionalidad de eliminar un cliente por rut y que pide una contraseña para confirmar la eliminacion. CREADO CON EXITO
         - Me di cuenta que no se envia el correo al cliente cuando se elimina la cuenta. Ya que el cliente se elimina antes de enviar el correo.
         - Entonces quizas guarde el correo antes y luego elimine.
-        - ademas tengo un metodo que reconstriye la clase con los datos de database, pero no se inicializa bien. Me falta corregir eso.
+        - ademas tengo un metodo que reconstriye la clase con los datos de database, pero no se inicializa bien. Corregido: solo pase los datos a dict()
 
     - Incorporar un log para los transacciones me gustaria eso. Para el final de sesion, almacena todo esto.
         - Quizas sea bueno hacer una clase para esto. 
 
 
-        
+
+06/02/2026
+
+    - Seguimos con incorpoorar un log para las transacciones. Creado todo con exito.
+        - Para esto debemos tener una clase de logincliente, donde se puedan hacer depositos y retiros. Creado con exito.
+        - Ademas se pueden hacer transferencias entre clientes dentro del banco. Creado con exito.
+        - Se debe guardar en la base de datos. Creado con exito.
+
+
+

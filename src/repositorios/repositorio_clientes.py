@@ -60,13 +60,13 @@ class RepositorioClientes:
                 cliente.estado,
                 cliente.saldo,
                 cliente.contrasena,
-                clinte.__class__.__name__
+                cliente.__class__.__name__
             ))
 
             self.connection.commit()
             cliente.id = self.cursor.lastrowid
 
-            return True
+            return True 
         except sqlite3.IntegrityError:
             raise ClienteDuplicadoError(
                 f"El cliente ya existe en la base de datos:\n{cliente}"

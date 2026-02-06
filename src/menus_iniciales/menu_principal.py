@@ -17,8 +17,10 @@ def menu_principal():
             try:
                 cliente = servicio.iniciar_sesion()
                 if cliente:
-                    # Aquí iría el menú del cliente logueado
-                    print(f"Sesión iniciada. Saldo actual: ${cliente.saldo}")
+                    # Redirigir al menú del cliente
+                    from menus_iniciales.menu_cliente import mostrar_menu_cliente
+                    mostrar_menu_cliente(cliente)
+                    
             except Exception as e:
                 print(f"Error al iniciar sesión: {e}")
 

@@ -9,7 +9,7 @@ from models.cliente_regular import ClienteRegular
 from models.cliente_corporativo import ClienteCorporativo
 from models.cliente_premium import ClientePremium
 from models.cliente_vip import ClienteVip
-from utils.config import PATH_DB_TEST
+from utils.config import PATH_DB_CLIENTES, PATH_DB_CLIENTES, PATH_DB_TRANSACCIONES
 from pathlib import Path
 from .servicio_notificaciones import ServicioNotificaciones
 
@@ -41,7 +41,7 @@ class ServicioClientes:
         # self.repositorio.guardar_cliente(cliente)
         print(f"Cliente {cliente.nombre} creado exitosamente con estado: {cliente.estado}")
         
-        if RepositorioClientes(PATH_DB_TEST).guardar_cliente(cliente):
+        if RepositorioClientes(PATH_DB_CLIENTES).guardar_cliente(cliente):
             print("Cliente guardado exitosamente en la base de datos")
 
             #Voy a dejar de mandar correos por ahora. pero si funciona. 
@@ -49,7 +49,7 @@ class ServicioClientes:
             #print("Correo de bienvenida enviado exitosamente")
     
     def ver_todos_los_clientes(self):
-        clientes = RepositorioClientes(PATH_DB_TEST).listar_clientes()
+        clientes = RepositorioClientes(PATH_DB_CLIENTES).listar_clientes()
         if not clientes:
             print("No hay clientes en la base de datos")
             
@@ -58,6 +58,9 @@ class ServicioClientes:
         
     def _reconstruir_cliente(self, cliente_data):
         """Método helper para reconstruir un objeto Cliente desde los datos de la BD."""
+        # Se tiene que pasar a dict para que funcione el metodo, ya que 
+        # el repositorio devuelve un objeto de tipo Row
+        cliente_data = dict(cliente_data)
         tipo = cliente_data["tipo_cliente"]
         
         clases = {
@@ -87,7 +90,7 @@ class ServicioClientes:
     def iniciar_sesion(self):
         identificador, contrasena = I_U().pedir_credenciales_login()
         
-        repo = RepositorioClientes(PATH_DB_TEST)
+        repo = RepositorioClientes(PATH_DB_CLIENTES)
 
         cliente_data = None
         
@@ -118,7 +121,7 @@ class ServicioClientes:
         print("\n--- ELIMINAR CLIENTE (MODO ADMIN) ---")
         identificador = input("Ingrese RUT o Email del cliente a eliminar: ")
         
-        repo = RepositorioClientes(PATH_DB_TEST)
+        repo = RepositorioClientes(PATH_DB_CLIENTES)
         cliente_data = None
         
         if "@" in identificador:
@@ -130,7 +133,7 @@ class ServicioClientes:
             print("Cliente no encontrado.")
             return
 
-        cliente = self._reconstruir_cliente(dict(cliente_data))
+        cliente = self._reconstruir_cliente(cliente_data)
 
         if not cliente:
             print("Error al reconstruir cliente.")
