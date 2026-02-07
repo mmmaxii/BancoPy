@@ -1,4 +1,5 @@
 from .validadores_de_formato import ValidadorFormato as V_F
+from .generador_rut import generar_rut
 from datetime import datetime
 
 class InputsUsuario:
@@ -16,8 +17,15 @@ class InputsUsuario:
         V_F.validar_nombre(nombre)
         apellido = input("Ingrese el apellido del cliente: ")
         V_F.validar_nombre(apellido)
-        rut = input("Ingrese el RUT del cliente (ej: 12345678-9): ")
-        V_F.validar_rut(rut)
+        
+        # Lógica de RUT con Generador
+        rut_input = input("Ingrese el RUT (o escriba 'generar' para uno aleatorio): ")
+        if rut_input.lower().strip() == "generar":
+            rut = generar_rut()
+            print(f"RUT Generado: {rut}")
+        else:
+            rut = rut_input
+            V_F.validar_rut(rut)
         email = input("Ingrese el email del cliente: ")
         V_F.validar_email(email)
         telefono = input("Ingrese el telefono del cliente: ")
