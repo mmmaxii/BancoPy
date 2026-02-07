@@ -1,6 +1,6 @@
 from services.servicio_login_cliente import LoginCliente
 from models.cliente import Cliente
-from utils.ux_manager import UXManager
+from ui_ux.ux_manager import UXManager
 
 def mostrar_menu_cliente(cliente: Cliente):
     login_cliente = LoginCliente(cliente)

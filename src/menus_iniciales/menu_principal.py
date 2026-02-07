@@ -1,5 +1,5 @@
 from services.servicio_clientes import ServicioClientes
-from utils.ux_manager import UXManager
+from ui_ux.ux_manager import UXManager
 
 def menu_principal():
     servicio = ServicioClientes()
