@@ -30,7 +30,6 @@ Capa de lógica de negocio.
 - `servicio_clientes.py`: Coordina las operaciones principales (Login, Registro, Eliminación). Implementa la lógica para reconstruir objetos desde la base de datos.
 - `servicio_login_cliente.py`: Maneja la sesión del usuario activo, permitiendo consultar saldo, ver historial, depositar y transferir fondos.
 - `servicio_notificaciones.py`: Integra la API de SendGrid para enviar correos de bienvenida y despedida.
-- `servicio_validacion.py`: Validaciones de negocio adicionales.
 
 ### `src/utils/`
 Utilidades y helpers.
