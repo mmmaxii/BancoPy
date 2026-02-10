@@ -104,14 +104,14 @@ Para aprovechar al máximo todas las funcionalidades del sistema, te recomendamo
 Los documentos y códigos solicitados para la evaluación se encuentran organizados de la siguiente manera:
 
 1.  **Comparación de Paradigmas**:
-    -   📄 `docs/entrega/comparacion_paradigmas.md`: Explicación y ejemplos de Programación Estructurada vs POO.
+    -   📄 `docs/entrega/Analisis de caso PDF.pdf`: Explicación y análisis de caso (Comparación POO vs Estructurada).
 
 2.  **Clase Banco / Arquitectura**:
-    -   📄 `docs/entrega/arquitectura_banco.md`: Justificación técnica de la implementación de `ServicioClientes` como controlador bancario (Arquitectura en Capas).
+    -   📄 `docs/arquitectura_banco.md`: Justificación técnica de la implementación de `ServicioClientes` como controlador bancario.
 
 3.  **Ejemplo Práctico (Simulación)**:
     -   🐍 `src/simulacion.py`: Script estático que instancia el sistema, registra usuarios y realiza transferencias automáticamente.
-    -   **Ejecutar con**: `python src/simulacion.py`
+    -   **Ejecutar con (en la raíz del repositorio)**: `python src/simulacion.py`
 
 4.  **Diagrama de Clases**:
-    -   📊 `docs/class_diseño.txt`: Diagrama UML completo en formato Mermaid.
+    -   📊 `docs/entrega/Diagrama de clase UML.png`: Diagrama UML completo del sistema.
