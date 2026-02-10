@@ -41,16 +41,14 @@ class ServicioClientes:
         elif tipo_cliente == "ClienteCorporativo":
             cliente = ClienteCorporativo(id, nombre, apellido, rut, email, telefono, direccion, fecha_registro, saldo, contrasena)
         
-        # Guardar en repositorio (si lo has instanciado)
-        # self.repositorio.guardar_cliente(cliente)
         print(f"Cliente {cliente.nombre} creado exitosamente con estado: {cliente.estado}")
         
+    
         if RepositorioClientes(PATH_DB_CLIENTES).guardar_cliente(cliente):
             print("Cliente guardado exitosamente en la base de datos")
 
-            #Voy a dejar de mandar correos por ahora. pero si funciona. 
-            #ServicioNotificaciones().enviar_email_bienvenida(cliente)
-            #print("Correo de bienvenida enviado exitosamente")
+            ServicioNotificaciones().enviar_email_bienvenida(cliente)
+            print("Correo de bienvenida enviado exitosamente")
     
     def ver_todos_los_clientes(self):
         clientes = RepositorioClientes(PATH_DB_CLIENTES).listar_clientes()
@@ -60,9 +58,16 @@ class ServicioClientes:
         if confirmacion == "admin1234":
             if not clientes:
                 print("No hay clientes en la base de datos")
-                
-            for cliente in clientes:
-                print(dict(cliente))
+            
+            # Mejora visual para que se vea mas ordenadoq
+            print("\n--- LISTA DE CLIENTES REGISTRADOS ---")
+            for cliente_data in clientes:
+                cliente_obj = self._reconstruir_cliente(cliente_data)
+                if cliente_obj:
+                    print(f"ID: {cliente_obj.id} | {cliente_obj} | RUT: {cliente_obj.rut} | Email: {cliente_obj.email}")
+                else:
+                    # Fallback si falla la reconstrucción
+                    print(dict(cliente_data))
         else:
             print("Contraseña incorrecta. Operación cancelada.")
         

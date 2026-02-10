@@ -96,4 +96,14 @@ Ahora en adelante lo que voy a hacer es crear una lista de to-do para seguir mis
     - Agregar funciones especificas para cada clase. READYY
 
     - Me di cuenta que cuando transferieres a una cuenta y este tiene el maximo de dinero que puede almacenar,
-    sale la excepcion de la clase destinatiara, en vez de decir "no se pudo realizar la transferencia".
+    sale la excepcion de la clase destinatiara, en vez de decir "no se pudo realizar la transferencia". 
+    Finalmente arregle el bug. 
+
+
+
+09/02/2026
+
+    - Tengo que incorporar como una simulacion de mi programa. Se necesita crear un cliente y demas. CREADO CON EXITO
+    
+    - No se ven correctamente los clientes en la opcion del menu, solo se ve que printea el dict extraido del DB.
+        - Necesito crear una funcion para que se pueda ver el cliente de forma mas legible.

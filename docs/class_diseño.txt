@@ -1,0 +1,126 @@
+
+```mermaid
+classDiagram
+    %% --- CLASES MODELO (Herencia y Polimorfismo, ayudado con IA) ---
+    class Cliente {
+        +int id
+        +str nombre
+        +str apellido
+        +str rut
+        +str email
+        +str telefono
+        +str direccion
+        +str fecha_registro
+        #float _saldo
+        +str contrasena
+        +str estado
+        +saldo() float
+        +__str__() str
+    }
+
+    class ClienteRegular {
+        +simular_cdp(monto, dias) float
+    }
+    class ClientePremium {
+        +simular_compra_dolares(monto_clp) float
+    }
+    class ClienteVip {
+        +abrir_portafolio_inversion() str
+    }
+    class ClienteCorporativo {
+        +calcular_nomina_sueldos(num_empleados, sueldo_promedio) float
+    }
+
+    %% Relaciones de Herencia
+    Cliente <|-- ClienteRegular
+    Cliente <|-- ClientePremium
+    Cliente <|-- ClienteVip
+    Cliente <|-- ClienteCorporativo
+
+    %% --- REPOSITORIOS (Acceso a Datos) ---
+    class RepositorioClientes {
+        +guardar_cliente(cliente)
+        +obtener_cliente_por_rut(rut)
+        +obtener_cliente_por_email(email)
+        +listar_clientes()
+        +eliminar_cliente(rut)
+        +actualizar_cliente(cliente)
+        +cerrar_conexion()
+    }
+
+    class RepositorioTransacciones {
+        +crear_tabla()
+        +guardar_transaccion(cliente_id, tipo, monto, descripcion, destinatario)
+        +listar_por_cliente(cliente_id)
+        +calcular_total_diario(cliente_id, tipo_transaccion)
+    }
+
+    %% --- SERVICIOS (Lógica de Negocio) ---
+    class ServicioClientes {
+        -RepositorioClientes repo_clientes
+        -ServicioNotificaciones notificador
+        +iniciar_sesion()
+        +agregar_cliente()
+        +ver_todos_los_clientes()
+        +eliminar_cliente_admin()
+        -reconstruir_cliente(datos)
+    }
+
+    class LoginCliente {
+        -Cliente cliente
+        -RepositorioTransacciones repo_transacciones
+        -RepositorioClientes repo_clientes
+        +ver_transacciones()
+        +hacer_deposito()
+        +hacer_transferencia()
+        +acceder_servicios_especiales()
+        +cerrar_sesion()
+        -verificar_limite_diario(tipo, monto, limite)
+    }
+
+    class ServicioNotificaciones {
+        +enviar_email_bienvenida(cliente)
+        +enviar_email_despedida(cliente)
+    }
+
+    %% --- UTILS & UI (Interfaz y Ayudantes) ---
+    class UXManager {
+        +mostrar_encabezado(titulo, subtitulo)
+        +mostrar_menu(opciones)
+        +input_estilizado(mensaje)
+        +limpiar_pantalla()
+        -verificar_easter_egg()
+    }
+
+    class InputsUsuario {
+        +pedir_inputs_nuevo_cliente()
+        +pedir_credenciales_login()
+    }
+
+    class ValidadorFormato {
+        +validar_rut(rut)
+        +validar_nombre(nombre)
+        +validar_email(email)
+        +validar_telefono(telefono)
+    }
+    
+    class GeneradorRut {
+        +generar_rut() str
+    }
+
+    %% --- RELACIONES FINALES ---
+    
+    ServicioClientes --> RepositorioClientes : usa
+    ServicioClientes --> ServicioNotificaciones : usa
+    ServicioClientes --> InputsUsuario : usa
+    
+    LoginCliente --> Cliente : gestiona
+    LoginCliente --> RepositorioTransacciones : usa
+    LoginCliente --> RepositorioClientes : usa
+    LoginCliente --> UXManager : usa
+    
+    InputsUsuario --> ValidadorFormato : valida con
+    InputsUsuario --> GeneradorRut : genera rut con
+    
+    
+```

@@ -88,3 +88,35 @@ Utilidades y helpers.
    ```bash
    python src/main.py
    ```
+
+## Primeros Pasos y Recomendaciones
+
+Para aprovechar al máximo todas las funcionalidades del sistema, te recomendamos:
+
+1. **Registra al menos 2 Clientes**:
+   - Crea dos usuarios diferentes simulando distintas personas.
+   - Esto es esencial para probar las **transferencias** de dinero entre cuentas.
+
+2. **Usa un Correo Válido**:
+   - Al menos para uno de los usuarios, usa un email real y verifica si recibes el **correo de bienvenida** (requiere `SENDGRID_API_KEY`).
+
+3. **¡Recuerda los RUTs!**:
+   - Para transferir dinero, debes ingresar el RUT exacto del destinatario.
+   - *Tip*: Puedes usar la opción de Administrador (`clave: admin1234`) en el menú principal para listar todos los clientes y ver sus RUTs.
+
+## Entregables del Proyecto (Evaluación)
+
+Los documentos y códigos solicitados para la evaluación se encuentran organizados de la siguiente manera:
+
+1.  **Comparación de Paradigmas**:
+    -   📄 `docs/entrega/comparacion_paradigmas.md`: Explicación y ejemplos de Programación Estructurada vs POO.
+
+2.  **Clase Banco / Arquitectura**:
+    -   📄 `docs/entrega/arquitectura_banco.md`: Justificación técnica de la implementación de `ServicioClientes` como controlador bancario (Arquitectura en Capas).
+
+3.  **Ejemplo Práctico (Simulación)**:
+    -   🐍 `src/simulacion.py`: Script estático que instancia el sistema, registra usuarios y realiza transferencias automáticamente.
+    -   **Ejecutar con**: `python src/simulacion.py`
+
+4.  **Diagrama de Clases**:
+    -   📊 `docs/class_diseño.txt`: Diagrama UML completo en formato Mermaid.
