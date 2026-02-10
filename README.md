@@ -1,9 +1,5 @@
 # Gestor Inteligente de Clientes (GIC)
 
-> [!WARNING]
-> **PROYECTO EN DESARROLLO (WIP)**
-> Este proyecto se encuentra actualmente en construcción. Muchas funcionalidades están incompletas o sujetas a cambios.
-
 ## Descripción
 Sistema de gestión bancaria desarrollado en Python diseñado para administrar clientes y sus cuentas. El proyecto implementa una arquitectura en capas para separar la lógica de negocio, el acceso a datos y la interfaz de usuario.
 
