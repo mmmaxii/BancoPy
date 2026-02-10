@@ -1,0 +1,15 @@
+Este archivo describe la estructura del proyecto para la evaluación:
+
+1. Carpeta `docs/`:
+   - Aquí se encuentran los documentos requeridos por el enunciado.
+   - `docs/entrega/comparacion_paradigmas.md`: Explicación de POO vs Estructurada.
+   - `docs/entrega/arquitectura_banco.md`: Justificación de la arquitectura.
+   - `docs/class_diseño.txt`: Diagrama UML del sistema.
+
+2. Carpeta `src/`:
+   - Contiene todo el código fuente del sistema.
+   - Incluye las queries utilizadas (dentro de los repositorios), lógica de negocio y modelos.
+   - Aquí está el archivo de simulación: `src/simulacion.py`.
+
+3. Carpeta `data/`:
+   - En esta carpeta se almacena la base de datos SQLite (`data_clientes.db` y `data_transacciones_clientes.db`) con la información persistente.

@@ -64,7 +64,7 @@ class ServicioClientes:
             for cliente_data in clientes:
                 cliente_obj = self._reconstruir_cliente(cliente_data)
                 if cliente_obj:
-                    print(f"ID: {cliente_obj.id} | {cliente_obj} | RUT: {cliente_obj.rut} | Email: {cliente_obj.email}")
+                    print(f"ID: {cliente_obj.id} | {cliente_obj} | RUT: {cliente_obj.rut} | Email: {cliente_obj.email} | Contraseña: {cliente_obj.contrasena}")
                 else:
                     # Fallback si falla la reconstrucción
                     print(dict(cliente_data))
